@@ -41,18 +41,32 @@ THEN that book is deleted from my saved books list
 WHEN I click on the Logout button
 THEN I am logged out of the site and presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button  
 ```
+
+## Description
+I've significantly revamped my project by transitioning from a RESTful API setup to utilizing Apollo Server and GraphQL. Here's a summary of the key steps I've taken:
+
+Apollo Server Setup: I've integrated Apollo Server into my Node.js/Express backend to handle GraphQL queries and mutations effectively.
+
+GraphQL Schema Definition: I crafted a GraphQL schema, specifying types, queries, and mutations to facilitate data retrieval and manipulation, covering user accounts, book search, and management functionalities.
+
+Apollo Provider Configuration: In ymy React frontend, I've configured Apollo Client and employed Apollo Provider to orchestrate state management and facilitate communication with the Apollo Server through GraphQL.
+
+Authentication Middleware Refactoring: I've updated authentication middleware to align with GraphQL resolvers or directives, ensuring proper enforcement of authentication and authorization rules for GraphQL operations.
+
+Deployment: Successfully deploying my application on Heroku involves ensuring smooth hosting of both the Apollo Server backend and the React frontend, with MongoDB Atlas serving as the database solution.
+
+By making this transition, I've enhanced my project's efficiency, scalability, and maintainability. Utilizing GraphQL with Apollo Server and Client brings advantages such as optimized data fetching, minimized data over-fetching or under-fetching, and increased flexibility in querying and modifying data. This overhaul represents a significant architectural improvement, promising a more robust and adaptable application. Should you encounter any specific challenges or require further clarification on your refactoring journey, feel free to inquire!
+
+
 ## Installation Process
 To run the application locally:
 
 Clone the repository
 Run the following commands in the terminal:
 npm i
-npm run seed
 npm run build
 npm run develop
 
-
-To uninstall the app, follow the instructions on PWA uninstallation that is specific to your browser.
 
 ## Technologies used
 
@@ -74,3 +88,10 @@ vite
 ## Licence
 
 -- Licence: MIT
+
+## Deployed
+
+https://github.com/Grahamy27/MERN-Book-Search-Engine
+
+
+
