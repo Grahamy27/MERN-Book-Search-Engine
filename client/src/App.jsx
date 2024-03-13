@@ -1,12 +1,30 @@
-import React from 'react';
+import './App.css';
 import { Outlet } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import Navbar from './components/Navbar';
 
-// Create an Apollo Client instance
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  uri: '/graphql', // Adjust the URI to match your GraphQL server endpoint
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -22,30 +40,4 @@ function App() {
 }
 
 export default App;
-
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { BrowserRouter as Router } from 'react-router-dom';
-// import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
-// import App from './App'; // Assuming App is your root component
-
-// // Create an Apollo Client instance
-// const client = new ApolloClient({
-//   uri: '/graphql', // Specify the URI for your GraphQL server
-//   cache: new InMemoryCache(),
-// });
-
-// // Wrap the root component with ApolloProvider and provide the ApolloClient instance
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <Router>
-//       <ApolloProvider client={client}>
-//         <App />
-//       </ApolloProvider>
-//     </Router>
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
 
